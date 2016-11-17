@@ -1,2 +1,0 @@
-# lab_STSPS
-IFNTUOG
