@@ -10,7 +10,7 @@ analysis <- function(dataDir = "data"){
   average <- getAverage(meanStd)
 }
 
-#ôóíêö³ÿ äëÿ îá'ºäíàííÿ äàíèõ ïðî òåñòóâàííÿ òà òðåíóâàííÿ ó îäèí íàá³ð äàíèõ
+#Ñ„ÑƒÐ½ÐºÑ†Ñ–Ñ Ð´Ð»Ñ Ð¾Ð±'Ñ”Ð´Ð½Ð°Ð½Ð½Ñ Ð´Ð°Ð½Ð¸Ñ… Ð¿Ñ€Ð¾ Ñ‚ÐµÑÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ Ñ‚Ð° Ñ‚Ñ€ÐµÐ½ÑƒÐ²Ð°Ð½Ð½Ñ Ñƒ Ð¾Ð´Ð¸Ð½ Ð½Ð°Ð±Ñ–Ñ€ Ð´Ð°Ð½Ð¸Ñ…
 combine <- function(dataDir = "data"){
   test_y <- getY("test", dataDir)
   train_y <- getY("train", dataDir)
@@ -24,7 +24,7 @@ combine <- function(dataDir = "data"){
   data.frame(y, x)
 }
 
-#ôóíêö³ÿ äëÿ çàäàííÿ íàçâ àêòèâíîñòåé äëÿ íàçâ ä³àëüíîñò³ ó íàáîð³ äàíèõ
+#Ñ„ÑƒÐ½ÐºÑ†Ñ–Ñ Ð´Ð»Ñ Ð·Ð°Ð´Ð°Ð½Ð½Ñ Ð½Ð°Ð·Ð² Ð°ÐºÑ‚Ð¸Ð²Ð½Ð¾ÑÑ‚ÐµÐ¹ Ð´Ð»Ñ Ð½Ð°Ð·Ð² Ð´Ñ–Ð°Ð»ÑŒÐ½Ð¾ÑÑ‚Ñ– Ñƒ Ð½Ð°Ð±Ð¾Ñ€Ñ– Ð´Ð°Ð½Ð¸Ñ…
 setNamesOfActivities <- function(combinedData = combine()){
   activities <- getActivities()
   
@@ -39,14 +39,14 @@ setNamesOfActivities <- function(combinedData = combine()){
   result
 }
 
-#ôóíêö³ÿ äëÿ çàäàííÿ íàçâ äàíèõ, ÿê³ îïèñóþòü ñóòü çì³ííèõ
+#Ñ„ÑƒÐ½ÐºÑ†Ñ–Ñ Ð´Ð»Ñ Ð·Ð°Ð´Ð°Ð½Ð½Ñ Ð½Ð°Ð·Ð² Ð´Ð°Ð½Ð¸Ñ…, ÑÐºÑ– Ð¾Ð¿Ð¸ÑÑƒÑŽÑ‚ÑŒ ÑÑƒÑ‚ÑŒ Ð·Ð¼Ñ–Ð½Ð½Ð¸Ñ…
 setNamesOfVariables <- function(activities = setNamesOfActivities(), dataDir = "data"){
   colnames(activities) <- c("activity", getVariables(dataDir))
   
   return (activities)
 }
 
-#ôóíêö³ÿ äëÿ âèòÿãóâàííÿ ìàòåìàòè÷íîãî î÷³êóâàííÿ ³ äèñïåðñ³¿
+#Ñ„ÑƒÐ½ÐºÑ†Ñ–Ñ Ð´Ð»Ñ Ð²Ð¸Ñ‚ÑÐ³ÑƒÐ²Ð°Ð½Ð½Ñ Ð¼Ð°Ñ‚ÐµÐ¼Ð°Ñ‚Ð¸Ñ‡Ð½Ð¾Ð³Ð¾ Ð¾Ñ‡Ñ–ÐºÑƒÐ²Ð°Ð½Ð½Ñ Ñ– Ð´Ð¸ÑÐ¿ÐµÑ€ÑÑ–Ñ—
 getMeanStd <- function(variables = setNamesOfVariables()){
   result <- data.frame(variables[, 1])
   
@@ -70,7 +70,7 @@ getMeanStd <- function(variables = setNamesOfVariables()){
   return (result)
 }
 
-#ôóíêö³ÿ äëÿ ñòâîðåííÿ íàáîðó äàíèõ ³ç ñåðåäí³ì çíà÷åííÿì ïî êîæí³é çì³íí³é çà êîæíèì âèäîì ä³ÿëüíîñò³³ ïî êîæíîìó ïðåäìåò³
+#Ñ„ÑƒÐ½ÐºÑ†Ñ–Ñ Ð´Ð»Ñ ÑÑ‚Ð²Ð¾Ñ€ÐµÐ½Ð½Ñ Ð½Ð°Ð±Ð¾Ñ€Ñƒ Ð´Ð°Ð½Ð¸Ñ… Ñ–Ð· ÑÐµÑ€ÐµÐ´Ð½Ñ–Ð¼ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð½ÑÐ¼ Ð¿Ð¾ ÐºÐ¾Ð¶Ð½Ñ–Ð¹ Ð·Ð¼Ñ–Ð½Ð½Ñ–Ð¹ Ð·Ð° ÐºÐ¾Ð¶Ð½Ð¸Ð¼ Ð²Ð¸Ð´Ð¾Ð¼ Ð´Ñ–ÑÐ»ÑŒÐ½Ð¾ÑÑ‚Ñ–Ñ– Ð¿Ð¾ ÐºÐ¾Ð¶Ð½Ð¾Ð¼Ñƒ Ð¿Ñ€ÐµÐ´Ð¼ÐµÑ‚Ñ–
 getAverage <- function(data = getMeanStd()){
   activities <- unique(data[, 1])
   
@@ -149,12 +149,12 @@ getYLine <- function(lines, position = 1){
   line <- notNa[!is.null(notNa)]
 }
 
-#ôóíêö³ÿ äëÿ îòðèìàííÿ øëÿõó äî ïàïêè ³ç ôàéëàìè
+#Ñ„ÑƒÐ½ÐºÑ†Ñ–Ñ Ð´Ð»Ñ Ð¾Ñ‚Ñ€Ð¸Ð¼Ð°Ð½Ð½Ñ ÑˆÐ»ÑÑ…Ñƒ Ð´Ð¾ Ð¿Ð°Ð¿ÐºÐ¸ Ñ–Ð· Ñ„Ð°Ð¹Ð»Ð°Ð¼Ð¸
 getDir <- function(dir = "test", dataDir = "data"){
   paste(getwd(), dataDir, dir, sep = "/")
 }
 
-#ôóíêö³ÿ äëÿ îòðèìàííÿ íàçâ àêòèâíîñòåé
+#Ñ„ÑƒÐ½ÐºÑ†Ñ–Ñ Ð´Ð»Ñ Ð¾Ñ‚Ñ€Ð¸Ð¼Ð°Ð½Ð½Ñ Ð½Ð°Ð·Ð² Ð°ÐºÑ‚Ð¸Ð²Ð½Ð¾ÑÑ‚ÐµÐ¹
 getActivities <- function(dataDir = "data"){
   connection <- file(paste(getwd(), dataDir, "activity_labels.txt", sep = "/"), "r")
   activities <- readLines(connection)
@@ -169,7 +169,7 @@ getActivities <- function(dataDir = "data"){
   result
 }
 
-#ôóíêö³ÿ äëÿ îòðèìàííÿ íàçâ, ÿê³ îïèñóþòü ñóòü çì³ííèõ
+#Ñ„ÑƒÐ½ÐºÑ†Ñ–Ñ Ð´Ð»Ñ Ð¾Ñ‚Ñ€Ð¸Ð¼Ð°Ð½Ð½Ñ Ð½Ð°Ð·Ð², ÑÐºÑ– Ð¾Ð¿Ð¸ÑÑƒÑŽÑ‚ÑŒ ÑÑƒÑ‚ÑŒ Ð·Ð¼Ñ–Ð½Ð½Ð¸Ñ…
 getVariables <- function(dataDir = "data"){
   connection <- file(paste(getwd(), dataDir, "features.txt", sep = "/"), "r")
   activities <- readLines(connection)
