@@ -1,21 +1,21 @@
 setwd("C:/temp/lr_5")
 
-#читання файлу
+#С‡РёС‚Р°РЅРЅСЏ С„Р°Р№Р»Сѓ
 table <- read.table("data/household_power_consumption.txt", sep = ";", header = TRUE)
 
-#вилучення пропущених значень
+#РІРёР»СѓС‡РµРЅРЅСЏ РїСЂРѕРїСѓС‰РµРЅРёС… Р·РЅР°С‡РµРЅСЊ
 table <- table[!(table$Voltage == '?'),]
 
-#читання даних відповідно до дат 2007-02-01 і 2007-02-02
+#С‡РёС‚Р°РЅРЅСЏ РґР°РЅРёС… РІС–РґРїРѕРІС–РґРЅРѕ РґРѕ РґР°С‚ 2007-02-01 С– 2007-02-02
 table <- table[table$Date=='1/2/2007' | table$Date=='2/2/2007',]
 
-#перетворення змінних у Date і Time та внесення отриманого значення у колонку Date
+#РїРµСЂРµС‚РІРѕСЂРµРЅРЅСЏ Р·РјС–РЅРЅРёС… Сѓ Date С– Time С‚Р° РІРЅРµСЃРµРЅРЅСЏ РѕС‚СЂРёРјР°РЅРѕРіРѕ Р·РЅР°С‡РµРЅРЅСЏ Сѓ РєРѕР»РѕРЅРєСѓ Date
 table$Date <-strptime(paste(as.Date(table$Date, format = "%d/%m/%Y"), table$Time), format = "%Y-%m-%d %H:%M:%S")
 
-#вилучення колонки Time, оскільки значення із даної колонки уже містяться у колонці Date
+#РІРёР»СѓС‡РµРЅРЅСЏ РєРѕР»РѕРЅРєРё Time, РѕСЃРєС–Р»СЊРєРё Р·РЅР°С‡РµРЅРЅСЏ С–Р· РґР°РЅРѕС— РєРѕР»РѕРЅРєРё СѓР¶Рµ РјС–СЃС‚СЏС‚СЊСЃСЏ Сѓ РєРѕР»РѕРЅС†С– Date
 table <- table[, !(colnames(table) %in% "Time")]
 
-#перетворення даних у цифровий формат
+#РїРµСЂРµС‚РІРѕСЂРµРЅРЅСЏ РґР°РЅРёС… Сѓ С†РёС„СЂРѕРІРёР№ С„РѕСЂРјР°С‚
 table$Global_active_power <- as.numeric(table$Global_active_power)
 table$Global_reactive_power <- as.numeric(table$Global_reactive_power)
 table$Voltage <- as.numeric(table$Voltage)
@@ -23,7 +23,7 @@ table$Sub_metering_1 <- as.numeric(table$Sub_metering_1)
 table$Sub_metering_2 <- as.numeric(table$Sub_metering_2)
 table$Sub_metering_3 <- as.numeric(table$Sub_metering_3)
 
-#будування графіку
+#Р±СѓРґСѓРІР°РЅРЅСЏ РіСЂР°С„С–РєСѓ
 par(mfrow=c(2,2))
 plot(table$Date, table$Global_active_power, type = "l", xlab = "", ylab = "Global active power")
 plot(table$Date, table$Voltage, type = "l", xlab = "datetime", ylab = "Voltage")
@@ -33,6 +33,6 @@ lines(table$Date, table$Sub_metering_3, type = "l", col = "blue")
 legend("topright", legend = c("Sub metering 1", "Sub metering 2", "Sub metering 3"), col = c("black", "red", "blue"), pch = NA, lty = c(1, 1, 1), bty = "n")
 plot(table$Date, table$Global_reactive_power, type = "l", xlab = "datetime", ylab = "Global reactive power")
 
-#збереження графіка у файл
+#Р·Р±РµСЂРµР¶РµРЅРЅСЏ РіСЂР°С„С–РєР° Сѓ С„Р°Р№Р»
 dev.copy(device = png, filename = "plot4.png", width = 480, height = 480)
 dev.off()
